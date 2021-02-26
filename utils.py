@@ -151,9 +151,12 @@ def annotate_predictions(preds: List[np.ndarray],
     """annotates list of prediction arrays with provided or preset labels"""
     class_labels = (overwrite_class_labels if overwrite_class_labels is not None
                     else CLASS_LABELS)
-    return {rank: {l: v for l, v in zip(class_labels[rank], p.transpose())}
+    return {rank: {l: v.astype(float) for l, v in zip(class_labels[rank], p.transpose())}
             for rank, p in zip(class_labels, preds)}
 
-def best_predictions(preds_annotated: dict) -> dict:
-    return [max(preds_annotated[rank], key=lambda l: preds_annotated[rank][l])
-            for rank in preds_annotated]
+def best_predictions(preds_annotated: dict):
+    result = []
+    for rank in preds_annotated:
+        best = max(preds_annotated[rank], key=lambda l: preds_annotated[rank][l])
+        result.append((best, preds_annotated[rank][best]))
+    return result
