@@ -1,10 +1,11 @@
 import argparse
-from utils import (seq2tokens, get_token_dict, process_bert_tokens_batch, load_bert,
-                   parse_fasta, annotate_predictions, best_predictions, seq_frames)
+from bertax.utils import (seq2tokens, get_token_dict, process_bert_tokens_batch, load_bert,
+                          parse_fasta, annotate_predictions, best_predictions, seq_frames)
 from logging import  info, getLogger, INFO, WARNING
 import numpy as np
 from random import sample
 import json
+import pkg_resources
 
 def parse_arguments(argv=None):
     parser = argparse.ArgumentParser(description='BERTax: Predicting sequence taxonomy')
@@ -28,15 +29,15 @@ def parse_arguments(argv=None):
                         help='do not include class confidence values in output')
     parser.add_argument('--batch_size', type=int, help='batch size for predictions (Default: 32)',
                         default=32)
-    parser.add_argument('--model_file', default='resources/big_trainingset_all_fix_classes_selection.h5',
-                        help='path of the trained model to use (Default: "resources/big_trainingset_all_fix_classes_selection.h5")')
     return parser.parse_args(argv)
 
 
 def main():
     args = parse_arguments()
     getLogger().setLevel(INFO if args.verbose else WARNING)
-    model = load_bert(args.model_file)
+    model_file = pkg_resources.resource_filename(
+        'bertax', 'resources/big_trainingset_all_fix_classes_selection.h5')
+    model = load_bert(model_file)
     max_seq_len = model.input_shape[0][1]
     token_dict = get_token_dict()
     # read input
@@ -83,5 +84,6 @@ def main():
                 handle.write('\t'.join([id_] + [f'{b[0]}\t{b[1]:.0%}' for b in best_predictions(annots)]) + '\n')
     if (args.conf_matrix_file is not None):
         json.dump(out, open(args.conf_matrix_file, 'w'), indent=2)
+
 if __name__ == '__main__':
     main()

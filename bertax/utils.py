@@ -5,7 +5,7 @@ from itertools import product
 import keras
 from logging import info
 import collections
-from typing import List, OrderedDict, Optional
+from typing import List, OrderedDict, Optional, Tuple
 
 ALPHABET = 'ACGT'
 CLASS_LABELS = OrderedDict([('superkingdom', ['Archaea', 'Bacteria', 'Eukaryota',
@@ -89,9 +89,7 @@ def seq2kmers(seq, k=3, stride=3, pad=True, to_upper=True):
 def seq2tokens(seq, token_dict, seq_length=250, max_length=None,
                k=3, stride=3, window=True, seq_len_like=None):
     """transforms raw sequence into list of tokens to be used for
-    fine-tuning BERT
-    NOTE: intended to be used as `custom_encode_sequence` argument for
-    DataGenerators"""
+    fine-tuning BERT"""
     if (max_length is None):
         max_length = seq_length
     if (seq_len_like is not None):
@@ -154,7 +152,8 @@ def annotate_predictions(preds: List[np.ndarray],
     return {rank: {l: v.astype(float) for l, v in zip(class_labels[rank], p.transpose())}
             for rank, p in zip(class_labels, preds)}
 
-def best_predictions(preds_annotated: dict):
+def best_predictions(preds_annotated: dict) -> List[Tuple[str, float]]:
+    """returns best prediction classes alongside predicton confidences"""
     result = []
     for rank in preds_annotated:
         best = max(preds_annotated[rank], key=lambda l: preds_annotated[rank][l])
