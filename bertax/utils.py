@@ -71,9 +71,8 @@ def parse_fasta(fasta):
 def seq2kmers(seq, k=3, stride=3, pad=True, to_upper=True):
     """transforms sequence to k-mer sequence.
     If specified, end will be padded so no character is lost"""
-    if (k == 1 and stride == 1):
-        # for performance reasons
-        return seq
+    if (len(seq) < k):
+        return [seq.ljust(k, 'N')] if pad else []
     kmers = []
     for i in range(0, len(seq) - k + 1, stride):
         kmer = seq[i:i+k]
@@ -113,12 +112,12 @@ def seq2tokens(seq, token_dict, seq_length=250, max_length=None,
     segments = [0 for _ in range(max_length)]
     return [np.array(indices), np.array(segments)]
 
-def seq_frames(seq: str, frame_len: int, all_frames=False) -> List[str]:
-    """returns all frames of seq with a maximum length of `frame_len` and
-    step-size 1 if `all_frames` else `frame_len`"""
-    iterator = (range(len(seq) - frame_len + 1) if all_frames
+def seq_frames(seq: str, frame_len: int, running_window=False, stride=1):
+    """returns all windows of seq with a maximum length of `frame_len` and specified stride
+    if `running_window` else `frame_len` -- alongside the chunks' positions"""
+    iterator = (range(0, len(seq) - frame_len + 1, stride) if running_window
                 else range(0, len(seq), frame_len))
-    return [seq[i:i+frame_len] for i in iterator]
+    return [seq[i:i+frame_len] for i in iterator], [(i, i+frame_len) for i in iterator]
 
 def get_token_dict(alph=ALPHABET, k=3) -> dict:
     """get token dictionary dict generated from `alph` and `k`"""
