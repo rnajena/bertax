@@ -9,6 +9,7 @@ conda create -n bertax -c fkretschmer bertax
 
 Activate environment and install necessary pip-dependencies
 ```shell
+conda activate bertax
 pip install keras-bert==0.86.0
 ```
 
