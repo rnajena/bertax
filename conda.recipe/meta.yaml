@@ -6,7 +6,7 @@ source:
   path: ../
 
 build:
-  number: 2
+  number: 3
   noarch: python
   script: python -m pip install --no-deps --ignore-installed .
 
@@ -20,7 +20,7 @@ requirements:
     - numpy
     - scipy >=0.14
     - keras >=2.4.3
-    - tensorflow >=2.3.0
+    - tensorflow-gpu >=2.3.0
     - pyyaml
     - h5py
 
