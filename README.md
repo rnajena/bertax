@@ -4,7 +4,7 @@
 
 ## Installation
 ### Conda
-Install in new conda environment 
+Install in new conda environment
 ```shell
 conda create -n bertax -c fkretschmer bertax
 ```
@@ -92,3 +92,23 @@ Predict with a running window in 300 nt steps and output predictions for all chu
 ```shell
 bertax -C -1 --running_window --running_window_stride 300 --chunk_predictions sequences.fa
 ```
+
+## Visualization
+
+It is possible to get a visualization of the underlying BERT model, based on
+[bertviz](https://github.com/jessevig/bertviz) for a specific DNA sequence. For this,
+additional dependencies have to be installed:
+
+- torch
+- transformers
+- bertviz==1.0.0
+
+An HTML file with interactive visualization can be created with:
+
+```shell
+bertax-visualize sequence.fa
+```
+
+As visualization is quite performance-intensive for big sequences, parameters can be set
+to only visualize a specific part (`-a $start -n $size`). Both an attention-head view and
+model-view are available, set with the parameter `--mode {head|model}`.

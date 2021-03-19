@@ -49,7 +49,7 @@ CLASS_LABELS = OrderedDict([('superkingdom', ['Archaea', 'Bacteria', 'Eukaryota'
 
 Record = collections.namedtuple('Record', ['id', 'seq'])
 
-def parse_fasta(fasta):
+def parse_fasta(fasta) -> List[Record]:
     records = []
     id_ = None
     seq = ''

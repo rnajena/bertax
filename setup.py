@@ -17,7 +17,8 @@ setup(
     package_data={'bertax': ['resources/big_trainingset_all_fix_classes_selection.h5']},
     entry_points={
         'console_scripts': [
-            'bertax=bertax.bertax:main'
+            'bertax=bertax.bertax:main',
+            'bertax-visualize=bertax.visualize:main'
         ]
     },
     install_requires=requirements,
