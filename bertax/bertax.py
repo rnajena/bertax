@@ -30,6 +30,8 @@ def parse_arguments(argv=None):
                         action='store_true')
     parser.add_argument('-o', '--output_file', help='write output to specified file (Default: stdout)',
                         default=None, metavar='FILE')
+    parser.add_argument('-t', '--nr_threads', help='set the number of threads used (Default: determine automatically)',
+                        type=int, default=None, metavar='#THREADS')
     parser.add_argument('--conf_matrix_file', help='if set, writes confidences for all possible classes '
                         'in all ranks to specified file (JSON)', default=None, metavar='FILE')
     parser.add_argument('--sequence_split', help='how to handle sequences longer '
@@ -66,6 +68,10 @@ def main():
     getLogger().setLevel(INFO if args.verbose else WARNING)
     model_file = pkg_resources.resource_filename(
         'bertax', 'resources/big_trainingset_all_fix_classes_selection.h5')
+    if (args.nr_threads is not None):
+        import tensorflow as tf
+        tf.config.threading.set_inter_op_parallelism_threads(args.nr_threads)
+        tf.config.threading.set_intra_op_parallelism_threads(args.nr_threads)
     model = load_bert(model_file)
     max_seq_len = MAX_SIZE if args.custom_window_size is None else args.custom_window_size
     token_dict = get_token_dict()

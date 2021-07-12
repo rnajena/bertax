@@ -64,6 +64,7 @@ Options:
 <tr><td><code>--output_ranks</code></td><td>specify which ranks to include in output (default: superkingdom phylum genus)</td></tr>
 <tr><td><code>--no_confidence</code></td><td>if set, do not include confidence scores in output</td></tr>
 <tr><td><code>--batch_size</code></td><td>batch size (i.e., how many sequence chunks to predict at the same time); can be lowered to decrease memory usage and increased for better performance (default: 32)</td></tr>
+<tr><td><code>-t</code> <code>--nr_threads</code></td><td>set the number of threads used (default: determine automatically)</td></tr>
 </tbody>
 </table>
 
