@@ -32,7 +32,7 @@ pip install -e bertax
 
 Alternatively to installing, a docker container is also available, pull and run:
 ```shell
-docker run -t --rm -v /path/to/input/files:/in fkre/bertax:0.1 /in/sequences.fa
+docker run -t --rm -v /path/to/input/files:/in fkre/bertax:latest /in/sequences.fa
 ```
 
 The docker container can also be run with GPU-support, likely resulting in much faster predictions. For this, the `nvidia-container-toolkit` has to be [installed](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker), the `bertax` image has to be run with the flag `--gpus all`.
