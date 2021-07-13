@@ -53,6 +53,7 @@ def parse_fasta(fasta) -> List[Record]:
     records = []
     id_ = None
     seq = ''
+    allowed_characters = set("ACTGYRWSKMDVHBXN")
     with open(fasta) as f:
         for line in f:
             if line.startswith('>'):
@@ -61,9 +62,14 @@ def parse_fasta(fasta) -> List[Record]:
                 id_ = line[1:].strip()
                 seq = ''
             else:
-                seq += line.strip()
-        if (id_ is not None):
-            records.append(Record(id_, seq))
+                line_no_whitespace = line.strip()
+                assert set(line_no_whitespace.upper()).issubset(allowed_characters), \
+                    f"{fasta} is not a fasta-file: contains not allowed characters " \
+                    f"{set(line_no_whitespace.upper()).difference(allowed_characters)} in line\n{line_no_whitespace}"
+                seq += line_no_whitespace
+
+        assert id_ is not None, f"{fasta} is not a fasta file: no header detected"
+        records.append(Record(id_, seq))
     info(f'read in {len(records)} sequences')
     return records
 
@@ -75,13 +81,13 @@ def seq2kmers(seq, k=3, stride=3, pad=True, to_upper=True):
         return [seq.ljust(k, 'N')] if pad else []
     kmers = []
     for i in range(0, len(seq) - k + 1, stride):
-        kmer = seq[i:i+k]
+        kmer = seq[i:i + k]
         if to_upper:
             kmers.append(kmer.upper())
         else:
             kmers.append(kmer)
     if (pad and len(seq) - (i + k)) % k != 0:
-        kmers.append(seq[i+k:].ljust(k, 'N'))
+        kmers.append(seq[i + k:].ljust(k, 'N'))
     return kmers
 
 
@@ -117,7 +123,7 @@ def seq_frames(seq: str, frame_len: int, running_window=False, stride=1):
     if `running_window` else `frame_len` -- alongside the chunks' positions"""
     iterator = (range(0, len(seq) - frame_len + 1, stride) if running_window
                 else range(0, len(seq), frame_len))
-    return [seq[i:i+frame_len] for i in iterator], [(i, i+frame_len) for i in iterator]
+    return [seq[i:i + frame_len] for i in iterator], [(i, i + frame_len) for i in iterator]
 
 def get_token_dict(alph=ALPHABET, k=3) -> dict:
     """get token dictionary dict generated from `alph` and `k`"""
@@ -144,7 +150,7 @@ def load_bert(bert_path, compile_=False):
     return model
 
 def annotate_predictions(preds: List[np.ndarray],
-                         overwrite_class_labels:Optional[OrderedDict]=None) -> dict:
+                         overwrite_class_labels: Optional[OrderedDict] = None) -> dict:
     """annotates list of prediction arrays with provided or preset labels"""
     class_labels = (overwrite_class_labels if overwrite_class_labels is not None
                     else CLASS_LABELS)
