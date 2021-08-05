@@ -60,14 +60,19 @@ def parse_arguments(argv=None):
                         help='do not include class confidence values in output')
     parser.add_argument('--batch_size', type=int, help='batch size for predictions (Default: 32)',
                         default=32)
+    parser.add_argument('--custom_model_file', help='Custom finetuned BERTax model to use (Default: None)',
+                        default=None)
     return parser.parse_args(argv)
 
 
 def main():
     args = parse_arguments()
     getLogger().setLevel(INFO if args.verbose else WARNING)
-    model_file = pkg_resources.resource_filename(
-        'bertax', 'resources/big_trainingset_all_fix_classes_selection.h5')
+    if (args.custom_model_file is None):
+        model_file = pkg_resources.resource_filename(
+            'bertax', 'resources/big_trainingset_all_fix_classes_selection.h5')
+    else:
+        model_file = args.custom_model_file
     if (args.nr_threads is not None):
         import tensorflow as tf
         tf.config.threading.set_inter_op_parallelism_threads(args.nr_threads)
