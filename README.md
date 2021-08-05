@@ -117,3 +117,8 @@ bertax-visualize sequence.fa
 As visualization is quite performance-intensive for big sequences, parameters can be set
 to only visualize a specific part (`-a $start -n $size`). Both an attention-head view and
 model-view are available, set with the parameter `--mode {head|model}`.
+
+## Training BERTax models
+
+The repository with the code used in the development of BERTax is located at https://github.com/f-kretschmer/bertax_training.
+Custom models trained with these scripts can be used in BERTax with the parameter `--custom_model_file`.
