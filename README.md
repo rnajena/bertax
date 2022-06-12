@@ -100,7 +100,7 @@ bertax -C -1 --running_window --running_window_stride 300 --chunk_predictions se
 
 ### Confusion Matrices 
 
-In the directory `confusion_matrices` you can find confusion matrices from the publication's results which indicate the classification quality. These matrices could not be included directly in the paper due to the vast amount and size of them.
+In the directory [confusion_matrices](confusion_matrices/) you can find confusion matrices from the publication's results which indicate the classification quality. These matrices could not be included directly in the paper due to the vast amount and size of them.
 
 ## Visualization
 
