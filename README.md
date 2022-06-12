@@ -98,6 +98,10 @@ Predict with a running window in 300 nt steps and output predictions for all chu
 bertax -C -1 --running_window --running_window_stride 300 --chunk_predictions sequences.fa
 ```
 
+### Confusion Matrices 
+
+In the directory `confusion_matrices` you can find confusion matrices from the publication's results which indicate the classification quality. These matrices could not be included directly in the paper due to the vast amount and size of them.
+
 ## Visualization
 
 It is possible to get a visualization of the underlying BERT model, based on
