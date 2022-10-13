@@ -6,7 +6,7 @@ source:
   path: ../
 
 build:
-  number: 7
+  number: 8
   noarch: python
   script: python -m pip install --no-deps --ignore-installed .
 
