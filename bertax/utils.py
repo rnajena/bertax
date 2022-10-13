@@ -5,7 +5,7 @@ from itertools import product
 import keras
 from logging import info
 import collections
-from typing import List, OrderedDict, Optional, Tuple
+from typing import List, OrderedDict, Optional, Tuple, Union
 
 ALPHABET = 'ACGT'
 CLASS_LABELS = OrderedDict([('superkingdom', ['Archaea', 'Bacteria', 'Eukaryota',
@@ -157,10 +157,14 @@ def annotate_predictions(preds: List[np.ndarray],
     return {rank: {l: v.astype(float) for l, v in zip(class_labels[rank], p.transpose())}
             for rank, p in zip(class_labels, preds)}
 
-def best_predictions(preds_annotated: dict) -> List[Tuple[str, float]]:
+def best_predictions(preds_annotated: Union[dict, List[Tuple[str, dict]]]) -> List[Tuple[str, float]]:
     """returns best prediction classes alongside predicton confidences"""
     result = []
-    for rank in preds_annotated:
-        best = max(preds_annotated[rank], key=lambda l: preds_annotated[rank][l])
-        result.append((best, preds_annotated[rank][best]))
+    for item in preds_annotated:
+        if isinstance(item, tuple):
+            rank, preds_dict = item
+        else:
+            rank, preds_dict = item, preds_annotated[item]
+        best = max(preds_dict, key=lambda l: preds_dict[l])
+        result.append((best, preds_dict[best]))
     return result

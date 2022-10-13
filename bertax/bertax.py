@@ -4,7 +4,8 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 import argparse
 from bertax.utils import (seq2tokens, get_token_dict, process_bert_tokens_batch, load_bert,
-                          parse_fasta, annotate_predictions, best_predictions, seq_frames)
+                          parse_fasta, annotate_predictions, best_predictions, seq_frames,
+                          CLASS_LABELS)
 import tensorflow as tf
 from logging import  info, getLogger, INFO, WARNING
 import numpy as np
@@ -19,6 +20,12 @@ def check_max_len_arg(value):
     value = int(value)
     if (value < 1 or value > MAX_SIZE):
         raise argparse.ArgumentTypeError(f'value has to be between 1 and {MAX_SIZE}')
+    return value
+
+def check_ranks(value):
+    if (value not in CLASS_LABELS):
+        raise argparse.ArgumentTypeError(f'output ranks have to be a combination of {set(CLASS_LABELS)}, '
+                                         'other ranks are not predicted')
     return value
 
 def parse_arguments(argv=None):
@@ -55,7 +62,7 @@ def parse_arguments(argv=None):
                         '-1 to use all chunks (Default: 100)', metavar='NR')
     parser.add_argument('--output_ranks', help='rank predictions to include in output '
                         '(Default: superkingdom phylum genus)',
-                        default=['superkingdom', 'phylum', 'genus'], nargs='+', metavar='RANK')
+                        default=['superkingdom', 'phylum', 'genus'], nargs='+', metavar='RANK', type=check_ranks)
     parser.add_argument('--no_confidence', action='store_true',
                         help='do not include class confidence values in output')
     parser.add_argument('--batch_size', type=int, help='batch size for predictions (Default: 32)',
@@ -105,11 +112,12 @@ def main():
         preds = model.predict(x, verbose=int(args.verbose), batch_size=args.batch_size)
         if (args.chunk_predictions and not no_chunks):
             for pos, pred in zip(positions, [[p[i] for p in preds] for i in range(len(positions))]):
-                out.append((f'[{pos[0]}..{pos[1]}] {record.id}', annotate_predictions(pred)))
+                annotated = annotate_predictions(pred)
+                out.append((f'[{pos[0]}..{pos[1]}] {record.id}', [(r, annotated[r]) for r in args.output_ranks]))
         else:                   # for each window
             preds = list(map(lambda p: p.mean(axis=0), preds))
             annotated = annotate_predictions(preds)
-            out.append((record.id, annotated))
+            out.append((record.id, [(r, annotated[r]) for r in args.output_ranks]))
     info(f'predicted classes for {len(records)} sequence records')
     ## OUTPUT
     if (args.output_file is None): # formatted table
