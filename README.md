@@ -2,7 +2,7 @@
 
 # BERTax: Taxonomic Classification of DNA sequences
 
-This is the repository to the paper: [BERTax: taxonomic classification of DNA sequences with Deep Neural Networks](https://www.biorxiv.org/content/10.1101/2021.07.09.451778v1)
+This is the repository to the preprint-paper [BERTax: taxonomic classification of DNA sequences with Deep Neural Networks](https://www.biorxiv.org/content/10.1101/2021.07.09.451778v1) and the published paper: [Taxonomic classification of DNA sequences beyond sequence similarity using deep neural networks](https://scholar.google.de/scholar?hl=de&as_sdt=0%2C5&q=florian+mock&btnG=#:~:text=Alle%2010%20Versionen-,%5BHTML%5D%20pnas.org,-Taxonomic%20classification%20of) respectively.
 
 The used data can be found under DOI 10.17605/OSF.IO/QG6MV or [https://osf.io/qg6mv/](url)
 
@@ -130,6 +130,8 @@ Custom models trained with these scripts can be used in BERTax with the paramete
 ## Compatible phyla and genera
 
 Due to the limited amount of samples that can be used for training, we could not train all known phyla and genera. Therefore, we present here the list of compatible phyla and genera. Note: If the taxon of your sample is not included in this list, there is a high probability that phylum/genus will be predicted as "unknown".
+If you want you can [train your own model](#training-bertax-models), that includes the taxa of interest to you.
+
 Note: We recommend using BERTax only for super kingdom and phylum prediction, but genera are possible. For more details see: [our paper at pnas.org](https://www.pnas.org/doi/full/10.1073/pnas.2122636119)
 
 **phylum**
