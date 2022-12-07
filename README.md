@@ -126,3 +126,52 @@ model-view are available, set with the parameter `--mode {head|model}`.
 
 The repository with the code used in the development of BERTax is located at https://github.com/f-kretschmer/bertax_training.
 Custom models trained with these scripts can be used in BERTax with the parameter `--custom_model_file`.
+
+## Compatible phyla and genera
+
+Due to the limited amount of samples that can be used for training, we could not train all known phyla and genera. Therefore, we present here the list of compatible phyla and genera. Note: If the taxon of your sample is not included in this list, there is a high probability that phylum/genus will be predicted as "unknown".
+Note: We recommend using BERTax only for super kingdom and phylum prediction, but genera are possible. For more details see: [our paper at pnas.org](https://www.pnas.org/doi/full/10.1073/pnas.2122636119)
+
+**phylum**
+
+    'Actinobacteria', 'Apicomplexa', 'Aquificae',
+    'Arthropoda', 'Artverviricota', 'Ascomycota', 'Bacillariophyta', 'Bacteroidetes',
+    'Basidiomycota', 'Candidatus Thermoplasmatota', 'Chlamydiae', 'Chlorobi',
+    'Chloroflexi', 'Chlorophyta', 'Chordata', 'Crenarchaeota', 'Cyanobacteria',
+    'Deinococcus-Thermus', 'Euglenozoa', 'Euryarchaeota', 'Evosea', 'Firmicutes',
+    'Fusobacteria', 'Gemmatimonadetes', 'Kitrinoviricota', 'Lentisphaerae', 'Mollusca',
+    'Negarnaviricota', 'Nematoda', 'Nitrospirae', 'Peploviricota', 'Pisuviricota',
+    'Planctomycetes', 'Platyhelminthes', 'Proteobacteria', 'Rhodophyta', 'Spirochaetes',
+    'Streptophyta', 'Tenericutes', 'Thaumarchaeota', 'Thermotogae', 'Uroviricota',
+    'Verrucomicrobia' 
+    
+**genus**
+
+    'Acidilobus', 'Acidithiobacillus',
+    'Actinomyces', 'Actinopolyspora', 'Acyrthosiphon', 'Aeromonas', 'Akkermansia', 'Anas',
+    'Apis', 'Aquila', 'Archaeoglobus', 'Asparagus', 'Aspergillus', 'Astyanax', 'Aythya',
+    'Bdellovibrio', 'Beta', 'Betta', 'Bifidobacterium', 'Botrytis', 'Brachyspira',
+    'Bradymonas', 'Brassica', 'Caenorhabditis', 'Calypte', 'Candidatus Kuenenia',
+    'Candidatus Nitrosocaldus', 'Candidatus Promineofilum', 'Carassius', 'Cercospora',
+    'Chanos', 'Chlamydia', 'Chrysemys', 'Ciona', 'Citrus', 'Clupea', 'Coffea',
+    'Colletotrichum', 'Cottoperca', 'Crassostrea', 'Cryptococcus', 'Cucumis', 'Cucurbita',
+    'Cyanidioschyzon', 'Cynara', 'Cynoglossus', 'Daucus', 'Deinococcus', 'Denticeps',
+    'Desulfovibrio', 'Dictyostelium', 'Drosophila', 'Echeneis', 'Egibacter', 'Egicoccus',
+    'Elaeis', 'Equus', 'Erpetoichthys', 'Esox', 'Euzebya', 'Fervidicoccus', 'Frankia',
+    'Fusarium', 'Gadus', 'Gallus', 'Gemmata', 'Gopherus', 'Gossypium', 'Gouania',
+    'Helianthus', 'Ictalurus', 'Ktedonosporobacter', 'Legionella', 'Leishmania',
+    'Lepisosteus', 'Leptospira', 'Limnochorda', 'Malassezia', 'Manihot', 'Mariprofundus',
+    'Methanobacterium', 'Methanobrevibacter', 'Methanocaldococcus', 'Methanocella',
+    'Methanopyrus', 'Methanosarcina', 'Microcaecilia', 'Modestobacter', 'Monodelphis',
+    'Mus', 'Musa', 'Myripristis', 'Neisseria', 'Nitrosopumilus', 'Nitrososphaera',
+    'Nitrospira', 'Nymphaea', 'Octopus', 'Olea', 'Oncorhynchus', 'Ooceraea',
+    'Ornithorhynchus', 'Oryctolagus', 'Oryzias', 'Ostreococcus', 'Papaver', 'Perca',
+    'Phaeodactylum', 'Phyllostomus', 'Physcomitrium', 'Plasmodium', 'Podarcis', 'Pomacea',
+    'Populus', 'Prosthecochloris', 'Pseudomonas', 'Punica', 'Pyricularia', 'Pyrobaculum',
+    'Quercus', 'Rhinatrema', 'Rhopalosiphum', 'Roseiflexus', 'Rubrobacter', 'Rudivirus',
+    'Salarias', 'Salinisphaera', 'Sarcophilus', 'Schistosoma', 'Scleropages',
+    'Sedimentisphaera', 'Sesamum', 'Solanum', 'Sparus', 'Sphaeramia', 'Spodoptera',
+    'Sporisorium', 'Stanieria', 'Streptomyces', 'Strigops', 'Synechococcus', 'Takifugu',
+    'Thalassiosira', 'Theileria', 'Thermococcus', 'Thermogutta', 'Thermus', 'Tribolium',
+    'Trichoplusia', 'Ustilago', 'Vibrio', 'Vitis', 'Xenopus', 'Xiphophorus',
+    'Zymoseptoria'
