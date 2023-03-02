@@ -2,9 +2,9 @@
 
 # BERTax: Taxonomic Classification of DNA sequences
 
-This is the repository to the preprint-paper [BERTax: taxonomic classification of DNA sequences with Deep Neural Networks](https://www.biorxiv.org/content/10.1101/2021.07.09.451778v1) and the published paper: [Taxonomic classification of DNA sequences beyond sequence similarity using deep neural networks](https://scholar.google.de/scholar?hl=de&as_sdt=0%2C5&q=florian+mock&btnG=#:~:text=Alle%2010%20Versionen-,%5BHTML%5D%20pnas.org,-Taxonomic%20classification%20of) respectively.
+This is the repository to the preprint-paper [BERTax: taxonomic classification of DNA sequences with Deep Neural Networks](https://www.biorxiv.org/content/10.1101/2021.07.09.451778v1) and the published paper: [Taxonomic classification of DNA sequences beyond sequence similarity using deep neural networks](https://doi.org/10.1073/pnas.2122636119) respectively.
 
-The used data can be found under DOI 10.17605/OSF.IO/QG6MV or [https://osf.io/qg6mv/](url)
+The used data can be found under DOI 10.17605/OSF.IO/QG6MV or [https://osf.io/qg6mv/](https://osf.io/qg6mv/)
 
 ## Installation
 ### Conda
