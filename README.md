@@ -24,7 +24,7 @@ pip install keras-bert==0.86.0
 Clone the repository (Git LFS has to be enabled beforehand to be able to download the large model weights file)
 ```shell
 git lfs install # if not already installed
-git clone https://github.com/f-kretschmer/bertax.git
+git clone https://github.com/rnajena/bertax.git
 ```
 
 Then install with pip
@@ -98,7 +98,7 @@ Predict with a running window in 300 nt steps and output predictions for all chu
 bertax -C -1 --running_window --running_window_stride 300 --chunk_predictions sequences.fa
 ```
 
-### Confusion Matrices 
+### Confusion Matrices
 
 In the directory [confusion_matrices](confusion_matrices/) you can find confusion matrices from the publication's results which indicate the classification quality. These matrices could not be included directly in the paper due to the vast amount and size of them.
 
@@ -124,7 +124,7 @@ model-view are available, set with the parameter `--mode {head|model}`.
 
 ## Training BERTax models
 
-The repository with the code used in the development of BERTax is located at https://github.com/f-kretschmer/bertax_training.
+The repository with the code used in the development of BERTax is located at https://github.com/rnajena/bertax_training.
 Custom models trained with these scripts can be used in BERTax with the parameter `--custom_model_file`.
 
 ## Compatible phyla and genera
@@ -145,8 +145,8 @@ Note: We recommend using BERTax only for super kingdom and phylum prediction, bu
     'Negarnaviricota', 'Nematoda', 'Nitrospirae', 'Peploviricota', 'Pisuviricota',
     'Planctomycetes', 'Platyhelminthes', 'Proteobacteria', 'Rhodophyta', 'Spirochaetes',
     'Streptophyta', 'Tenericutes', 'Thaumarchaeota', 'Thermotogae', 'Uroviricota',
-    'Verrucomicrobia' 
-    
+    'Verrucomicrobia'
+
 **genus**
 
     'Acidilobus', 'Acidithiobacillus',

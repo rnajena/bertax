@@ -25,6 +25,6 @@ requirements:
     - h5py
 
 about:
-  home: https://github.com/f-kretschmer/bertax
+  home: https://github.com/rnajena/bertax
   summary: DNA sequence taxonomy prediction
   license: MIT

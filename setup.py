@@ -12,7 +12,7 @@ setup(
     license='MIT',
     author='Fleming Kretschmer, Florian Mock, Anton Kriese',
     author_email='fleming.kretschmer@uni-jena.de',
-    url='https://github.com/f-kretschmer/bertax',
+    url='https://github.com/rnajena/bertax',
     packages=find_packages(),
     package_data={'bertax': ['resources/big_trainingset_all_fix_classes_selection.h5']},
     entry_points={
