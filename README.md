@@ -19,19 +19,6 @@ conda activate bertax
 pip install keras-bert==0.86.0
 ```
 
-### Local pip-only installation
-
-Clone the repository (Git LFS has to be enabled beforehand to be able to download the large model weights file)
-```shell
-git lfs install # if not already installed
-git clone https://github.com/rnajena/bertax.git
-```
-
-Then install with pip
-```shell
-pip install -e bertax
-```
-
 ## Docker
 
 Alternatively to installing, a docker container is also available, pull and run:
