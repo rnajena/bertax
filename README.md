@@ -6,8 +6,25 @@ This is the repository to the preprint-paper [BERTax: taxonomic classification o
 
 The used data can be found under DOI 10.17605/OSF.IO/QG6MV or [https://osf.io/qg6mv/](https://osf.io/qg6mv/)
 
-## Installation
-### Conda
+## Run Bertax
+
+We provide a Docker container to run BERTax.
+Pull and run with:
+```shell
+docker run -t --rm -v /path/to/input/files:/in fkre/bertax:latest /in/sequences.fa
+```
+
+The docker container can also be run with GPU-support, likely resulting in much faster predictions. For this, the `nvidia-container-toolkit` has to be [installed](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker), the `bertax` image has to be run with the flag `--gpus all`.
+
+The image can be built locally (after cloning -- see below) with
+```shell
+docker build -t bertax bertax
+```
+
+
+## Alternative local installation
+### Prepare conda
+
 Install in new conda environment
 ```shell
 conda create -n bertax -c fkretschmer bertax
@@ -19,19 +36,19 @@ conda activate bertax
 pip install keras-bert==0.86.0
 ```
 
-## Docker
+### Local pip-only installation
 
-Alternatively to installing, a docker container is also available, pull and run:
+Clone the repository (Git LFS has to be enabled beforehand to be able to download the large model weights file)
 ```shell
-docker run -t --rm -v /path/to/input/files:/in fkre/bertax:latest /in/sequences.fa
+git lfs install # if not already installed
+git clone https://github.com/rnajena/bertax.git
 ```
 
-The docker container can also be run with GPU-support, likely resulting in much faster predictions. For this, the `nvidia-container-toolkit` has to be [installed](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker), the `bertax` image has to be run with the flag `--gpus all`.
-
-The image can be built locally (after cloning -- see above) with
+Then install with pip
 ```shell
-docker build -t bertax bertax
+pip install -e bertax
 ```
+
 
 ## Usage
 
