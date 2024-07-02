@@ -38,17 +38,18 @@ pip install keras-bert==0.86.0
 
 ### Local pip-only installation
 
-Clone the repository (Git LFS has to be enabled beforehand to be able to download the large model weights file)
+
+First clone this repository
 ```shell
-git lfs install # if not already installed
 git clone https://github.com/rnajena/bertax.git
 ```
 
-Then install with pip
+Then [download](https://github.com/rnajena/bertax/releases/latest/download/big_trainingset_all_fix_classes_selection.h5) the (big) model file into the `resources` subfolder.
+
+Finally, install with pip
 ```shell
 pip install -e bertax
 ```
-
 
 ## Usage
 
