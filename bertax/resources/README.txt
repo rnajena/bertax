@@ -1,0 +1,1 @@
+download the 'big_trainingset_all_fix_classes_selection.h5' model file from GitHub releases (https://github.com/rnajena/bertax/releases/latest/download/big_trainingset_all_fix_classes_selection.h5) into this directory
